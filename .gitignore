@@ -6,3 +6,10 @@
 
 # Environment files
 .env
+
+# pip installer
+*.egg-info/
+dist/
+build/
+*.egg
+*.spec

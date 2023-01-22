@@ -3,9 +3,9 @@ import requests
 import locale
 from openpyxl import Workbook
 from openpyxl.worksheet.hyperlink import Hyperlink
-import os
+from tqdm import tqdm
 from dotenv import load_dotenv
-
+import os
 
 locale.setlocale(locale.LC_ALL, 'en_US.UTF-8')
 
@@ -22,7 +22,7 @@ def search_videos(query):
         data = json.loads(response.text)
         if "items" in data:
             video_ids = []
-            for item in data["items"]:
+            for item in tqdm(data["items"], desc="Fetching video IDs"):
                 video_ids.append(item['id']['videoId'])
             video_url = f'https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics&id={",".join(video_ids)}&key={api_key}'
             video_response = requests.get(video_url)
