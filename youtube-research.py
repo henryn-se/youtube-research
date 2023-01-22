@@ -3,10 +3,15 @@ import requests
 import locale
 from openpyxl import Workbook
 from openpyxl.worksheet.hyperlink import Hyperlink
+import os
+from dotenv import load_dotenv
+
 
 locale.setlocale(locale.LC_ALL, 'en_US.UTF-8')
 
-api_key = 'AIzaSyBCnpKiVcn-r543ZoyFaWX8TNi5xihHCiw'
+load_dotenv()
+
+api_key = os.getenv("API_KEY")
 
 
 def search_videos(query):
